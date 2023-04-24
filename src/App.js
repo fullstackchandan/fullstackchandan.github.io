@@ -1,10 +1,13 @@
 import "./styles.css";
+import "./Resource.js";
+import Resource from "./Resource.js";
 
 export default function App() {
   return (
     <div className="App">
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
+      <h1>My Portfolio</h1>
+      <h2>Start editing!</h2>
+      <Resource />
     </div>
   );
 }
