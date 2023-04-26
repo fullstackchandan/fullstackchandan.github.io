@@ -7,7 +7,8 @@ export default function Resource() {
       <li>Javascript - FreeCodeCamp</li>
       <li>Bash - Replit</li>
       <li>React - Scrimba</li>
-      <li>Projects - lamadev</li>
+      <li>SQL - sqlzoo, sqlbolt, datalemur, danny dinners challenge</li>
+      <li>Projects - Portfolio by lamadev</li>
     </ul>
   );
 }
