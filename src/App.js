@@ -9,6 +9,10 @@ export default function App() {
       <Resource course="JavaScript" platform="FCC" />
       <Resource course="Bash" platform="Replit" />
       <Resource course="React" platform="Scrimba" />
+      <Resource
+        course="SQL"
+        platform="sqlzoo, datalemur, danny's dinner club"
+      />
     </div>
   );
 }
