@@ -5,8 +5,14 @@ export default function App() {
   return (
     <div className="App">
       <h1>Chandan Portfolio</h1>
-      <h2>Start Reading!</h2>
-      <Resource />
+      <h4>Course - Platform</h4>
+      <Resource course="JavaScript" platform="FCC" />
+      <Resource course="Bash" platform="Replit" />
+      <Resource course="React" platform="Scrimba" />
+      <Resource
+        course="SQL"
+        platform="sqlzoo, datalemur, danny's dinner club"
+      />
     </div>
   );
 }
