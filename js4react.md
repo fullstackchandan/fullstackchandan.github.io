@@ -8,4 +8,5 @@ Concepts
 Terms
 1. Lifting state up
 2. stateful tracking of value
-3. 
+3. immutability
+4. 
