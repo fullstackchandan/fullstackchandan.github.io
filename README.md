@@ -1,4 +1,5 @@
-# chyawanprashwala.github.io
+# fullstackchandan.github.io
+
 
 Created with CodeSandbox
 
@@ -15,4 +16,5 @@ Created with CodeSandbox
 git command explain
 move from branch(name -> codespace-1) to master - git checkout master
 merge branch to master -> git merge codespace-1
+
 push master to remote repo -> git push origin master
