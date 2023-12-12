@@ -9,15 +9,14 @@
     - Some sections articles
     - A footer
   - Use of semantics HTML5
-      - <section></section> 
-      - <article></article>
-      - <header></header>
-      - <nav></nav>
+      - section 
+      - article
+      - header
+      - nav
     - use of declarative tags
-      - <!DOCTYPE html>
-      - <meta "charset-8">
-      - <meta viewport>
+      - !DOCTYPE
+      - meta "charset-8"
+      -meta viewport
     - use of external CSS
-        - <link rel="stylesheet" href="">
+        - link rel="stylesheet" href="
     - ues of comments
-        - <!-- -->
