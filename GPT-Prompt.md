@@ -546,3 +546,163 @@ And replace `fetch` with:
 ```javascript
 const fetch = require('node-fetch');
 ```
+
+### 7  To establish communication between a Python backend and a Node.js backend, 
+- To establish communication between a Python backend and a Node.js backend, you can use inter-process communication (IPC). One common method is to use a combination of a message broker and message queues. In this example, I'll demonstrate how you can use RabbitMQ as the message broker and Celery for the Python backend, while Node.js communicates with RabbitMQ.
+
+### Requirements:
+- RabbitMQ (Message broker)
+- Celery (Python backend)
+- Node.js (for the Node.js backend)
+
+### Steps:
+
+#### 1. Install necessary packages:
+
+Install Celery for Python:
+
+```bash
+pip install celery
+```
+
+Install amqplib, which is a RabbitMQ library for Celery:
+
+```bash
+pip install amqp
+```
+
+Install RabbitMQ on your system. Follow the [official installation guide](https://www.rabbitmq.com/download.html).
+
+#### 2. Set up Celery in Python:
+
+Create a file named `tasks.py`:
+
+```python
+# tasks.py
+from celery import Celery
+
+app = Celery('tasks', broker='pyamqp://guest@localhost//')
+
+@app.task
+def sum_first_n_numbers(n):
+    return sum(range(1, n+1))
+```
+
+#### 3. Run Celery:
+
+Open a terminal and run Celery:
+
+```bash
+celery -A tasks worker --loglevel=info
+```
+
+#### 4. Create Node.js backend:
+
+Install the `amqplib` library for Node.js using npm:
+
+```bash
+npm install amqplib
+```
+
+Create a file named `nodejs_backend.js`:
+
+```javascript
+// nodejs_backend.js
+const amqp = require('amqplib');
+
+async function main() {
+  const connection = await amqp.connect('amqp://localhost');
+  const channel = await connection.createChannel();
+
+  const queue = 'sum_task';
+  await channel.assertQueue(queue, { durable: false });
+
+  channel.consume(queue, (msg) => {
+    const n = parseInt(msg.content.toString());
+    console.log(`Received task: Sum of first ${n} numbers`);
+    
+    // Perform the calculation (e.g., sum of first n numbers)
+    const result = Array.from({ length: n }, (_, i) => i + 1).reduce((sum, num) => sum + num, 0);
+    
+    // Send the result back to the Python backend
+    channel.sendToQueue(msg.properties.replyTo, Buffer.from(result.toString()), {
+      correlationId: msg.properties.correlationId,
+    });
+  }, { noAck: true });
+
+  console.log('Node.js backend waiting for tasks...');
+}
+
+main();
+```
+
+#### 5. Modify the Python code to use RPC:
+
+Modify the `tasks.py` file to make it an RPC (Remote Procedure Call) server:
+
+```python
+# tasks.py
+from celery import Celery
+
+app = Celery('tasks', broker='pyamqp://guest@localhost//')
+
+@app.task
+def sum_first_n_numbers(n):
+    return sum(range(1, n+1))
+```
+
+#### 6. Create a Python RPC client:
+
+Create a file named `rpc_client.py`:
+
+```python
+# rpc_client.py
+import pika
+import uuid
+
+class RpcClient:
+    def __init__(self):
+        self.connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+        self.channel = self.connection.channel()
+
+        result = self.channel.queue_declare(queue='', exclusive=True)
+        self.callback_queue = result.method.queue
+
+        self.channel.basic_consume(queue=self.callback_queue, on_message_callback=self.on_response, auto_ack=True)
+
+    def on_response(self, ch, method, properties, body):
+        if self.corr_id == properties.correlation_id:
+            self.response = body
+
+    def call(self, n):
+        self.response = None
+        self.corr_id = str(uuid.uuid4())
+        self.channel.basic_publish(
+            exchange='',
+            routing_key='sum_task',
+            properties=pika.BasicProperties(
+                reply_to=self.callback_queue,
+                correlation_id=self.corr_id,
+            ),
+            body=str(n))
+        while self.response is None:
+            self.connection.process_data_events()
+        return int(self.response)
+
+rpc_client = RpcClient()
+
+n = 10
+result = rpc_client.call(n)
+print(f"Result of sum of first {n} numbers: {result}")
+```
+
+#### 7. Run the Python RPC client:
+
+```bash
+python rpc_client.py
+```
+
+This should send a request to the Node.js backend, calculate the sum of the first 10 numbers, and print the result.
+
+Please note that this example assumes that RabbitMQ is running locally, and you may need to adjust the connection parameters accordingly.
+
