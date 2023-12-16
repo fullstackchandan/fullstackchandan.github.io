@@ -1,5 +1,5 @@
 ## Date - 15-dec-2023
-### 1 how jsfiddle is provifing javascript runtime environment for every user
+### Q.1 how jsfiddle is provifing javascript runtime environment for every user
 - JSFiddle provides a JavaScript runtime environment for every user through a combination of web technologies and server-side processing. Here's a high-level overview of how JSFiddle works to provide a JavaScript runtime environment:
 
 1. **Web Interface:**
@@ -28,7 +28,7 @@
 
 In summary, JSFiddle leverages the capabilities of modern web browsers to execute JavaScript code on the client side within an isolated environment. While some server-side processing may be involved for additional features, the primary focus is on providing an interactive and real-time JavaScript runtime experience for users in their browsers.
 
-### 2 how did they implemented in browser execution on client side
+### Q.2 how did they implemented in browser execution on client side
 - The in-browser execution of JavaScript on the client side in services like JSFiddle is made possible through the capabilities of modern web browsers and the use of iframes. Here's a more detailed explanation of how this is typically implemented:
 
 1. **Iframes:**
@@ -58,7 +58,7 @@ In summary, JSFiddle leverages the capabilities of modern web browsers to execut
 
 By using iframes and dynamically injecting user code, JSFiddle achieves an in-browser execution environment on the client side, providing an interactive and real-time coding experience for users.
 
-### 3  how JSFiddle implements sandboxing techniques to further enhance security.
+### Q.3  how JSFiddle implements sandboxing techniques to further enhance security.
 - JSFiddle implements sandboxing techniques to enhance security by restricting the capabilities of the code execution environment. Here are some common sandboxing techniques used in platforms like JSFiddle:
 
 1. **IFrame Sandboxing:**
@@ -93,7 +93,7 @@ By using iframes and dynamically injecting user code, JSFiddle achieves an in-br
 
 It's important to note that while sandboxing provides a layer of security, no system is completely foolproof. Continuous monitoring, prompt patching of vulnerabilities, and user education also play crucial roles in maintaining a secure coding environment.
 
-### 4  how to put limits on the execution time of user code to prevent infinite loops or long-running processes that could negatively impact the platform's performance.
+### Q.4  how to put limits on the execution time of user code to prevent infinite loops or long-running processes that could negatively impact the platform's performance.
 - Limiting the execution time of user code can be crucial to prevent infinite loops or long-running processes that may negatively impact the platform's performance. Here's a general approach to implementing such limits:
 
 1. **Use Web Workers:**
@@ -178,7 +178,7 @@ It's important to note that while sandboxing provides a layer of security, no sy
 These approaches can be adapted based on the specific requirements and architecture of your platform. It's important to carefully handle interruptions, cleanup resources, and communicate any termination events to the user in a clear and informative manner.
 
 ## Date - 16-dec-2023
-### 1 how to create nodejs setup such that sum function return sum of 1 to 10 result from server for html page
+### Q.1 how to create nodejs setup such that sum function return sum of 1 to 10 result from server for html page
 - To achieve this, you will need to use a combination of HTML, JavaScript, and a server-side language (such as Node.js in this example) to calculate the sum on the server and send it back to the HTML page. Here's a simple example using Node.js:
 
 1. Create a new directory for your project and navigate to it in your terminal.
@@ -264,7 +264,7 @@ node server.js
 
 Visit http://localhost:3000 in your web browser. The page will display "Result: 55," which is the sum of numbers from 1 to 10 calculated on the server and sent to the HTML page.
 
-### 2 setup this with button click asking for a range of number
+### Q.2 setup this with button click asking for a range of number
 - Sure, I'll modify the code to include a button that, when clicked, prompts the user for a range of numbers and then calculates and displays the sum for that range. Here's an updated version:
 
 ```html
@@ -344,7 +344,7 @@ app.listen(port, () => {
 
 Now, when you visit the page, you can input a start and end range, click the "Calculate Sum" button, and it will fetch and display the sum for the specified range from the server.
 
-### 3  fetch(`/sum?start=${start}&end=${end}`) explain
+### Q.3  fetch(`/sum?start=${start}&end=${end}`) explain
 - Certainly! The `fetch` function is a modern JavaScript API for making network requests. It is commonly used to make HTTP requests to a server and handle the responses. In the provided code:
 
 ```javascript
@@ -371,7 +371,7 @@ Here's a breakdown of each part:
 
 In summary, the `fetch` function is used to send a request to the server, and the subsequent `.then()` blocks handle the processing of the server's response, including parsing JSON data and updating the HTML page accordingly.
 
-### 4  How can two nodejs process can talk to each other via fetch method 
+### Q.4  How can two nodejs process can talk to each other via fetch method 
 - In Node.js, you can have two processes communicate with each other using the `fetch` method by creating a simple HTTP server-client architecture. Here's a basic example using the `express` framework for simplicity:
 
 1. **Create an HTTP server (Process 1):**
@@ -436,7 +436,7 @@ npm install express body-parser
 
 This is a simple example, and in a real-world scenario, you might want to handle errors, implement proper error handling, and add security measures depending on your use case. Additionally, consider using a more robust messaging solution like message queues or websockets for more complex communication needs.
 
-### 5  Why do backend Systems needs to communicate with each other 
+### Q.5  Why do backend Systems needs to communicate with each other 
 - Backend systems often need to communicate with each other for various reasons, including:
 
 1. **Microservices Architecture:**
@@ -468,7 +468,7 @@ This is a simple example, and in a real-world scenario, you might want to handle
 
 In summary, backend systems communicate with each other to enable modularization, scalability, data consistency, fault isolation, and to leverage specialized functionalities, ultimately contributing to the development of more robust and flexible systems.
 
-### 6  How to create backend Systems using nodejs where two or more backend communicate with each other 
+### Q.6  How to create backend Systems using nodejs where two or more backend communicate with each other 
 - Creating a backend system using Node.js where two or more backends communicate with each other involves building separate Node.js applications that can send and receive data. Here's a simple example using Express.js for building HTTP servers. In this example, we'll have two separate backend applications that communicate with each other.
 
 1. **Create Backend 1 (Server 1):**
@@ -547,7 +547,7 @@ And replace `fetch` with:
 const fetch = require('node-fetch');
 ```
 
-### 7  To establish communication between a Python backend and a Node.js backend, 
+### Q.7  To establish communication between a Python backend and a Node.js backend, 
 - To establish communication between a Python backend and a Node.js backend, you can use inter-process communication (IPC). One common method is to use a combination of a message broker and message queues. In this example, I'll demonstrate how you can use RabbitMQ as the message broker and Celery for the Python backend, while Node.js communicates with RabbitMQ.
 
 ### Requirements:
