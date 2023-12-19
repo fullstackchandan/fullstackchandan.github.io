@@ -1,5 +1,5 @@
 ## Date - 15-dec-2023
-### Q.1 how jsfiddle is provifing javascript runtime environment for every user
+### Q.1 how jsfiddle is providing javascript runtime environment for every user
 - JSFiddle provides a JavaScript runtime environment for every user through a combination of web technologies and server-side processing. Here's a high-level overview of how JSFiddle works to provide a JavaScript runtime environment:
 
 1. **Web Interface:**
