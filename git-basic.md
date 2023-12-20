@@ -1,4 +1,4 @@
-##Before you attempt to push to remote, make sure you’ve executed these commands:
+## Before you attempt to push to remote, make sure you’ve executed these commands:
 
 - git init for initializing a local repository
 - git add . to add all your files that the local repository
