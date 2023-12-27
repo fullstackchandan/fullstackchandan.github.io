@@ -776,3 +776,32 @@ Please note that this example assumes that RabbitMQ is running locally, and you 
 
 Remember to adjust the code according to your specific requirements, and make sure to handle errors and edge cases appropriately.
 
+## Date - 28-dec-2023
+### Q.1 
+function removeTask(button) {
+        var li = button.parentNode;
+        var ul = li.parentNode;
+        ul.removeChild(li);
+    } explain
+    - Certainly! The `removeTask` function is designed to remove a task from the to-do list when the user clicks the "Remove" button associated with that task. Let's break down the function step by step:
+
+```javascript
+function removeTask(button) {
+    // Get the parent list item (li) of the button that was clicked
+    var li = button.parentNode;
+
+    // Get the parent unordered list (ul) of the list item
+    var ul = li.parentNode;
+
+    // Remove the list item from the unordered list
+    ul.removeChild(li);
+}
+```
+
+1. **`var li = button.parentNode;`**: This line gets the parent node of the button that was clicked. Since the button is inside a list item (`li`), this line effectively gets the reference to the list item.
+
+2. **`var ul = li.parentNode;`**: This line gets the parent node of the list item, which is the unordered list (`ul`) containing all the tasks.
+
+3. **`ul.removeChild(li);`**: This line removes the list item (`li`) from the unordered list. The `removeChild` method is a DOM (Document Object Model) method used to remove a specified child node from the current element.
+
+In summary, when the "Remove" button is clicked, the function identifies the corresponding list item, then finds its parent unordered list. Finally, it removes the identified list item from the unordered list, effectively deleting the task from the to-do list.
